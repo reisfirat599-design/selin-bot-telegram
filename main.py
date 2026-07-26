@@ -5,10 +5,15 @@ from openai import OpenAI
 
 TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+RENDER_URL = "https://selin-bot-telegram.onrender.com"
 
 bot = telebot.TeleBot(TOKEN)
 client = OpenAI(api_key=OPENAI_API_KEY)
-app = Flask(__name__)
+app = Flask(_name_)
+
+# Otomatik Webhook Ayarlama
+bot.remove_webhook()
+bot.set_webhook(url=RENDER_URL)
 
 
 @app.route("/", methods=["POST"])
@@ -21,7 +26,6 @@ def getMessage():
 
 @app.route("/")
 def webhook():
-  bot.remove_webhook()
   return "Selin Bot is running!", 200
 
 
@@ -50,5 +54,5 @@ def handle_message(message):
     bot.reply_to(message, "Üzgünüm, bir hata oluştu.")
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
   app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
