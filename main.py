@@ -1,14 +1,11 @@
 import os
 import telebot
 from flask import Flask, request
-from openai import OpenAI
 
 TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 RENDER_URL = "https://selin-bot-telegram.onrender.com"
 
 bot = telebot.TeleBot(TOKEN)
-client = OpenAI(api_key=OPENAI_API_KEY)
 app = Flask("selinbot")
 
 bot.remove_webhook()
@@ -30,26 +27,15 @@ def webhook():
 
 @bot.message_handler(commands=["start", "help"])
 def send_welcome(message):
-  bot.reply_to(message, "Merhaba! Ben Selin. Sana nasıl yardımcı olabilirim?")
+  bot.reply_to(message, "Merhaba! Ben Selin. Şu an bakımdayım, çok yakında döneceğim!")
 
 
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
-  user_message = message.text
-  try:
-    completion = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {
-                "role": "system",
-                "content": "Sen yardımsever, samimi ve Türkçe konuşan bir asistansın.",
-            },
-            {"role": "user", "content": user_message},
-        ],
-    )
-    bot_reply = completion.choices[0].message.content
-    bot.reply_to(message, bot_reply)
-  except Exception as e:
-    bot.reply_to(message, f"Hata Detayı: {str(e)}")
+  bot.reply_to(
+      message,
+      "Şu an geçici olarak bakımdayım, OpenAI bakiyem güncelleniyor. Çok yakında tekrar sohbet edeceğiz! 😊",
+  )
+
 
 app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
