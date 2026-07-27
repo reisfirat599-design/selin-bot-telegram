@@ -9,7 +9,7 @@ RENDER_URL = "https://selin-bot-telegram.onrender.com"
 
 bot = telebot.TeleBot(TOKEN)
 client = OpenAI(api_key=OPENAI_API_KEY)
-app = Flask("selinbot")⁠
+app = Flask("selinbot")
 
 bot.remove_webhook()
 bot.set_webhook(url=RENDER_URL)
