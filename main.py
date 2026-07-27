@@ -27,15 +27,50 @@ def webhook():
 
 @bot.message_handler(commands=["start", "help"])
 def send_welcome(message):
-  bot.reply_to(message, "Merhaba! Ben Selin. Şu an bakımdayım, çok yakında döneceğim!")
+  tanitim_mesaji = (
+      "Selam Canım\n"
+      "Girne merkez, Magusa ve Lefkoşa’da görüşme yapıyorum.\n"
+      "Kendi yerim var\n"
+      "Eve ve otele geliyorum (taksi ücreti size ait )\n"
+      "Fotoğraflar Orijinal✅\n"
+      "Kondom şart ✅\n"
+      "Anal Yok-Ön Sevişme ✅\n"
+      "Otel-Ev (Gecelik)✅\n"
+      "Kendi Yerim var ✅\n\n"
+      "Seans 6.000TL🇹🇷\n"
+      "1 saat  11.000 TL🇹🇷\n"
+      "3 saat  15.000 TL 🇹🇷 \n"
+      "Gecelik 25.000 TL🇹🇷\n\n"
+      "RESİMLER  HİKAYEMİZDE MEVCUT\n\n"
+      "TELEGRAM KANALIMA ÜCRETSİZ KATILIP İNDİRİMLERDEN FAYDALANABİLİRSİNİZ\n\n"
+      "👇                                   👇\n\n"
+      "https://t.me/selin_kibris"
+  )
+  bot.reply_to(message, tanitim_mesaji)
 
 
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
-  bot.reply_to(
-      message,
-      "Şu an geçici olarak bakımdayım, OpenAI bakiyem güncelleniyor. Çok yakında tekrar sohbet edeceğiz! 😊",
+  tanitim_mesaji = (
+      "Selam Canım\n"
+      "Girne merkez, Magusa ve Lefkoşa’da görüşme yapıyorum.\n"
+      "Kendi yerim var\n"
+      "Eve ve otele geliyorum (taksi ücreti size ait )\n"
+      "Fotoğraflar Orijinal✅\n"
+      "Kondom şart ✅\n"
+      "Anal Yok-Ön Sevişme ✅\n"
+      "Otel-Ev (Gecelik)✅\n"
+      "Kendi Yerim var ✅\n\n"
+      "Seans 6.000TL🇹🇷\n"
+      "1 saat  11.000 TL🇹🇷\n"
+      "3 saat  15.000 TL 🇹🇷 \n"
+      "Gecelik 25.000 TL🇹🇷\n\n"
+      "RESİMLER  HİKAYEMİZDE MEVCUT\n\n"
+      "TELEGRAM KANALIMA ÜCRETSİZ KATILIP İNDİRİMLERDEN FAYDALANABİLİRSİNİZ\n\n"
+      "👇                                   👇\n\n"
+      "https://t.me/selin_kibris"
   )
+  bot.reply_to(message, tanitim_mesaji)
 
 
 app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
