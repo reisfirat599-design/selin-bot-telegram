@@ -31,3 +31,27 @@ def webhook():
 @bot.message_handler(commands=["start", "help"])
 def send_welcome(message):
   bot.reply_to(message, "Merhaba! Ben Selin. Sana nasıl yardımcı olabilirim?")
+
+
+@bot.message_handler(func=lambda message: True)
+def handle_message(message):
+  user_message = message.text
+  try:
+    completion = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {
+                "role": "system",
+                "content": "Sen yardımsever, samimi ve Türkçe konuşan bir asistansın.",
+            },
+            {"role": "user", "content": user_message},
+        ],
+    )
+    bot_reply = completion.choices[0].message.content
+    bot.reply_to(message, bot_reply)
+  except Exception as e:
+    bot.reply_to(message, f"Hata Detayı: {str(e)}")
+
+
+if _name_ == "_main_":
+  app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
